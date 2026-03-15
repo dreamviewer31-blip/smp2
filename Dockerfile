@@ -5,8 +5,9 @@ RUN apt-get update && apt-get install -y libsqlite3-dev \
     && docker-php-ext-install pdo pdo_sqlite \
     && rm -rf /var/lib/apt/lists/*
 
-# Enable mod_rewrite
-RUN a2enmod rewrite
+# Fix MPM conflict and enable mod_rewrite
+RUN a2dismod mpm_event mpm_worker 2>/dev/null || true \
+    && a2enmod mpm_prefork rewrite
 
 # Copy project files
 COPY . /var/www/html/
