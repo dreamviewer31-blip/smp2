@@ -1,0 +1,4 @@
+.DS_Store
+stitch_/
+.vscode/
+includes/database.sqlite
