@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Moscow Concrete | Премиальное производство и доставка бетона</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { "primary": "#f56624" },
+                    fontFamily: { "display": ["Inter", "sans-serif"] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-[Inter]">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 glass-header border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+            <a href="index.html" class="flex items-center gap-2">
+                <div class="bg-[#f56624] p-1.5 rounded-lg text-white">
+                    <span class="material-symbols-outlined block">conveyor_belt</span>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight text-slate-900">MOSCOW<span class="text-[#f56624]">CONCRETE</span></span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-semibold hover:text-[#f56624] transition-colors" href="index.html">Главная</a>
+                <a class="text-sm font-semibold hover:text-[#f56624] transition-colors" href="catalog.html">Каталог</a>
+                <a class="text-sm font-semibold hover:text-[#f56624] transition-colors" href="about.html">О нас</a>
+                <a class="text-sm font-semibold hover:text-[#f56624] transition-colors" href="contact.html">Контакты</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <div class="hidden lg:flex flex-col items-end">
+                    <span class="text-xs text-slate-500 font-medium">24/7 (Без выходных)</span>
+                    <a class="text-sm font-bold" href="tel:+74951234567">+7 (495) 123-45-67</a>
+                </div>
+                <a href="contact.html" class="bg-[#f56624] text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-orange-600 transition-all shadow-lg">Заказать звонок</a>
+                <!-- Mobile menu btn -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-100" onclick="toggleMobileMenu()">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile nav -->
+        <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+            <a class="block px-4 py-2 text-sm font-semibold hover:text-[#f56624]" href="index.html">Главная</a>
+            <a class="block px-4 py-2 text-sm font-semibold hover:text-[#f56624]" href="catalog.html">Каталог</a>
+            <a class="block px-4 py-2 text-sm font-semibold hover:text-[#f56624]" href="about.html">О нас</a>
+            <a class="block px-4 py-2 text-sm font-semibold hover:text-[#f56624]" href="contact.html">Контакты</a>
+        </div>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="relative bg-white pt-10 lg:pt-24 pb-16 lg:pb-32 overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-64 bg-orange-50 blur-[120px] lg:hidden"></div>
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-50 skew-x-[-12deg] translate-x-20 hidden lg:block"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <div class="lg:col-span-7 text-center lg:text-left order-2 lg:order-1">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-slate-900 text-white text-[10px] font-bold uppercase tracking-[0.2em] mb-6 lg:mb-8 shadow-xl animate-fadeIn">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#f56624] animate-pulse"></span>
+                    Прямые поставки от производителя
+                </div>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1] mb-6 lg:mb-8 tracking-tight animate-fadeIn opacity-0 delay-100">
+                    Премиальный бетон<br/>
+                    <span class="text-[#f56624]" id="city-name">в Москве и области</span>
+                </h1>
+                <p class="text-base lg:text-xl text-slate-600 mb-8 lg:mb-12 max-w-xl mx-auto lg:mx-0 leading-relaxed animate-fadeIn opacity-0 delay-200">
+                    Сертифицированные бетонные смеси для объектов любого уровня сложности. Собственная лаборатория и гарантированная доставка в течение 2 часов.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 lg:gap-5 justify-center lg:justify-start animate-fadeIn opacity-0 delay-300">
+                    <a class="bg-[#f56624] text-white px-8 lg:px-10 py-4 lg:py-5 rounded-2xl text-base lg:text-lg font-black hover:bg-orange-600 hover:-translate-y-1 transition-all flex items-center justify-center gap-3 shadow-2xl" href="#calculator">
+                        <span class="material-symbols-outlined text-2xl">calculate</span>
+                        Рассчитать стоимость
+                    </a>
+                    <a href="catalog.html" class="bg-white border-2 border-slate-200 text-slate-900 px-8 lg:px-10 py-4 lg:py-5 rounded-2xl text-base lg:text-lg font-black hover:border-slate-900 hover:bg-slate-900 hover:text-white transition-all flex items-center justify-center">
+                        Прайс-лист
+                    </a>
+                </div>
+                <div class="mt-12 lg:mt-16 flex justify-around lg:justify-start lg:gap-16 border-t border-slate-100 pt-8 lg:pt-10">
+                    <div class="text-center lg:text-left">
+                        <div class="text-xl lg:text-2xl font-black text-slate-900">ГОСТ</div>
+                        <div class="text-[10px] lg:text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Сертификация</div>
+                    </div>
+                    <div class="text-center lg:text-left">
+                        <div class="text-xl lg:text-2xl font-black text-slate-900">2 часа</div>
+                        <div class="text-[10px] lg:text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Доставка</div>
+                    </div>
+                    <div class="hidden sm:block text-center lg:text-left">
+                        <div class="text-xl lg:text-2xl font-black text-slate-900">24/7</div>
+                        <div class="text-[10px] lg:text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Отгрузка</div>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-5 relative order-1 lg:order-2 w-full max-w-[400px] lg:max-w-none mx-auto lg:mx-0">
+                <div class="relative z-20">
+                    <div class="aspect-square lg:aspect-[4/5] rounded-[2.5rem] lg:rounded-[2rem] overflow-hidden shadow-2xl border-[8px] lg:border-[12px] border-white">
+                        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx0soBrf-MEX9c4GceON4Cldv4iU0_IaiLJMOTmctwcK0m9XN_UqzsP589Rxqke_D_14p-sbege7R-xXZxcLo33QS0w62Xd5kQgCE0vnkpfMgYsmMt8jZqR7em8LC9DUI8mfvhHTLghqAlz3Zz5VrByEkmAy7lByBwbH1sIk5G3h4tBftNP0gP3dyY9XxeQGu_wja7JpkytL0x9G2Ekjt9NmRMYaURb2kbgQJWpDlwylg0BDSB_i-5Po4ZVRzu7HM6NsPzSWjoQqYg" alt="Hero"/>
+                    </div>
+                    <div class="absolute -bottom-6 -left-4 lg:-bottom-8 lg:-left-8 bg-white/80 backdrop-blur-md p-4 lg:p-6 rounded-2xl shadow-xl border border-white/20 max-w-[160px] lg:max-w-[200px]">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="material-symbols-outlined text-[#f56624] text-sm">verified_user</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Гарантия</span>
+                        </div>
+                        <p class="text-xs lg:text-sm font-bold text-slate-800 leading-tight">100% соответствие марке</p>
+                    </div>
+                </div>
+                <div class="absolute -top-10 -right-10 w-64 h-64 bg-orange-100 rounded-full blur-3xl hidden lg:block"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust Bar -->
+<section class="bg-slate-50 border-y border-slate-200 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="flex items-center gap-6 p-6 bg-white rounded-2xl shadow-sm border border-slate-100">
+                <div class="size-14 bg-orange-50 rounded-xl flex items-center justify-center text-[#f56624]"><span class="material-symbols-outlined text-3xl">factory</span></div>
+                <div><div class="text-3xl font-black text-slate-900">1500+ м³</div><div class="text-sm text-slate-500">В сутки</div></div>
+            </div>
+            <div class="flex items-center gap-6 p-6 bg-white rounded-2xl shadow-sm border border-slate-100">
+                <div class="size-14 bg-orange-50 rounded-xl flex items-center justify-center text-[#f56624]"><span class="material-symbols-outlined text-3xl">verified</span></div>
+                <div><div class="text-3xl font-black text-slate-900">12 лет</div><div class="text-sm text-slate-500">Опыта работы</div></div>
+            </div>
+            <div class="flex items-center gap-6 p-6 bg-white rounded-2xl shadow-sm border border-slate-100">
+                <div class="size-14 bg-orange-50 rounded-xl flex items-center justify-center text-[#f56624]"><span class="material-symbols-outlined text-3xl">local_shipping</span></div>
+                <div><div class="text-3xl font-black text-slate-900">50+ машин</div><div class="text-sm text-slate-500">Собственный парк</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="py-24 bg-white" id="services">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl lg:text-5xl font-black text-slate-900 mb-4">Бескомпромиссная надежность</h2>
+        <p class="text-slate-500 text-lg max-w-2xl mx-auto mb-16">Мы обеспечиваем полный цикл поддержки вашего проекта: от замеса до финальной заливки.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="group p-8 rounded-3xl border border-slate-100 hover:border-orange-200 hover:bg-slate-50 transition-all text-left">
+                <div class="size-16 rounded-2xl bg-slate-100 group-hover:bg-[#f56624] transition-colors flex items-center justify-center text-slate-900 group-hover:text-white mb-6"><span class="material-symbols-outlined text-4xl">local_shipping</span></div>
+                <h3 class="text-2xl font-bold mb-4">Доставка за 2 часа</h3>
+                <p class="text-slate-500 leading-relaxed">Стратегическое расположение заводов позволяет нам добраться до любого объекта в Москве и области в течение 120 минут.</p>
+            </div>
+            <div class="group p-8 rounded-3xl border border-slate-100 hover:border-orange-200 hover:bg-slate-50 transition-all text-left">
+                <div class="size-16 rounded-2xl bg-slate-100 group-hover:bg-[#f56624] transition-colors flex items-center justify-center text-slate-900 group-hover:text-white mb-6"><span class="material-symbols-outlined text-4xl">biotech</span></div>
+                <h3 class="text-2xl font-bold mb-4">Лабораторный контроль</h3>
+                <p class="text-slate-500 leading-relaxed">Собственная аккредитованная лаборатория проверяет каждую партию. Паспорт качества предоставляется с каждой поставкой.</p>
+            </div>
+            <div class="group p-8 rounded-3xl border border-slate-100 hover:border-orange-200 hover:bg-slate-50 transition-all text-left">
+                <div class="size-16 rounded-2xl bg-slate-100 group-hover:bg-[#f56624] transition-colors flex items-center justify-center text-slate-900 group-hover:text-white mb-6"><span class="material-symbols-outlined text-4xl">gps_fixed</span></div>
+                <h3 class="text-2xl font-bold mb-4">GPS Мониторинг</h3>
+                <p class="text-slate-500 leading-relaxed">Полная прозрачность с отслеживанием в реальном времени. Получайте уведомления, когда миксер приближается к объекту.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Calculator -->
+<section class="py-24 bg-slate-900 text-white rounded-[3rem] mx-4 my-24 overflow-hidden relative" id="calculator">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,102,36,0.1),transparent)]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col lg:flex-row gap-16 items-start">
+            <div class="flex-1">
+                <h2 class="text-4xl lg:text-5xl font-black mb-6">Рассчитайте стоимость</h2>
+                <p class="text-slate-400 text-lg mb-10">Получите мгновенную оценку вашего заказа на основе объема, марки бетона и расстояния.</p>
+                <div class="space-y-8 bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-300">Марка бетона</label>
+                            <select id="concrete-grade" class="w-full bg-white/10 rounded-xl px-4 py-3 text-white outline-none appearance-none">
+                                <option class="bg-slate-900" value="3500">М100 (В7.5) — 3 500 ₽</option>
+                                <option class="bg-slate-900" value="3800">М200 (В15) — 3 800 ₽</option>
+                                <option class="bg-slate-900" value="4250" selected>М300 (В22.5) — 4 250 ₽</option>
+                                <option class="bg-slate-900" value="4800">М400 (В30) — 4 800 ₽</option>
+                                <option class="bg-slate-900" value="5500">М500 (В40) — 5 500 ₽</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-300">Объем (м³)</label>
+                            <input id="volume" type="number" value="10" min="1" class="w-full bg-white/10 rounded-xl px-4 py-3 text-white outline-none"/>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold text-slate-300">Расстояние: <span id="distance-val">25</span> км</label>
+                        <input id="distance" type="range" min="1" max="100" value="25" class="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-[#f56624]" oninput="document.getElementById('distance-val').innerText=this.value;calculate()"/>
+                        <div class="flex justify-between text-xs text-slate-400"><span>1 км</span><span>50 км</span><span>100 км</span></div>
+                    </div>
+                    <div class="pt-6 border-t border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div>
+                            <span class="text-slate-400 text-sm block mb-1">Предварительная стоимость</span>
+                            <span id="total-price" class="text-4xl font-black text-white">0 ₽</span>
+                        </div>
+                        <button onclick="openOrderModal(document.getElementById('concrete-grade').options[document.getElementById('concrete-grade').selectedIndex].text.split('—')[0].trim())" class="bg-[#f56624] text-white px-10 py-4 rounded-xl font-black text-lg hover:bg-orange-600 transition-all shadow-xl">
+                            Получить точную смету
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:w-1/3">
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                    <h4 class="font-bold text-lg mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-[#f56624]">info</span>Оптовые скидки</h4>
+                    <p class="text-slate-400 text-sm">Заказываете более 100 м³? Свяжитесь с нами для получения специальных корпоративных тарифов.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Production -->
+<section class="py-24 bg-slate-50" id="production">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+                <div class="absolute -bottom-6 -left-6 w-full h-full border-4 border-[#f56624] rounded-3xl -z-10"></div>
+                <img class="rounded-3xl shadow-2xl w-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-NuBC2ZyQdmsowQQO9ykIzbjFzZU-T1SEjzBiVtFhGC9XhqkpU6pqnEieTmgoo7SR20N_EvFFVdOMmarID3WWnFloVPp7bSDBcFhPKysLQZ6PLbDoX9hIi91pIstIiE-xzoGV-8YHEkb5VfIwSMJ3Vwv34lUCkveELO2Gd9fIz15IphaRjGAwD8ZOV23jZZNjPIko31-mendwWQ4wppnJ_N6J2s-gcbKL9Hk3U3q741CA19CldoRMWV7d-u1fp1gNWPn4b5SwQNXu" alt="Production"/>
+                <div class="absolute top-8 right-8 bg-white p-4 rounded-xl shadow-lg">
+                    <p class="text-slate-900 font-black text-2xl">Liebherr</p>
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Партнер по оборудованию</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-4xl font-black text-slate-900 mb-6">Передовое производство</h2>
+                <p class="text-slate-600 text-lg mb-8 leading-relaxed">Наше предприятие использует полностью автоматизированные узлы смешивания Liebherr, что гарантирует точность дозировки и стабильное качество.</p>
+                <ul class="space-y-4">
+                    <li class="flex items-center gap-3 font-bold text-slate-700"><span class="material-symbols-outlined text-[#f56624]">check_circle</span>Автоматическая система дозирования</li>
+                    <li class="flex items-center gap-3 font-bold text-slate-700"><span class="material-symbols-outlined text-[#f56624]">check_circle</span>Подогрев для зимнего бетонирования</li>
+                    <li class="flex items-center gap-3 font-bold text-slate-700"><span class="material-symbols-outlined text-[#f56624]">check_circle</span>Прямой ж/д доступ для материалов</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map -->
+<section class="py-24 bg-white" id="delivery">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-black text-slate-900 mb-4">Зоны доставки</h2>
+            <p class="text-slate-500">Быстрая доставка по Москве и всей Московской области.</p>
+        </div>
+        <div class="rounded-3xl overflow-hidden shadow-2xl h-[500px] border border-slate-200 relative">
+            <div id="delivery-map" class="w-full h-full z-0"></div>
+            <div class="absolute bottom-8 left-8 z-10 bg-white/90 backdrop-blur p-6 rounded-2xl shadow-xl border border-slate-100 max-w-xs">
+                <h4 class="font-bold text-slate-900 mb-4">Наши мощности</h4>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3"><span class="w-3 h-3 rounded-full bg-[#f56624]"></span><span class="text-sm text-slate-600">РБУ — Север (г. Мытищи)</span></div>
+                    <div class="flex items-center gap-3"><span class="w-3 h-3 rounded-full bg-[#f56624]"></span><span class="text-sm text-slate-600">РБУ — Юг (г. Видное)</span></div>
+                    <div class="flex items-center gap-3"><span class="w-3 h-3 rounded-full bg-[#f56624]"></span><span class="text-sm text-slate-600">РБУ — Запад (г. Одинцово)</span></div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-slate-200">
+                    <p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-1">Время доставки</p>
+                    <p class="text-sm font-black text-slate-900">от 1.5 до 3-х часов</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How it Works -->
+<section class="py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl font-black text-slate-900 mb-16">Как мы работаем</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="text-center"><div class="size-20 bg-white border-2 border-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-6 text-[#f56624] shadow-sm"><span class="material-symbols-outlined text-4xl">add_task</span></div><h4 class="font-bold mb-2">1. Заявка</h4><p class="text-sm text-slate-500">Оставьте заявку или позвоните нам.</p></div>
+            <div class="text-center"><div class="size-20 bg-white border-2 border-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-6 text-[#f56624] shadow-sm"><span class="material-symbols-outlined text-4xl">contract</span></div><h4 class="font-bold mb-2">2. Договор</h4><p class="text-sm text-slate-500">Подтверждаем объем и фиксируем стоимость.</p></div>
+            <div class="text-center"><div class="size-20 bg-white border-2 border-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-6 text-[#f56624] shadow-sm"><span class="material-symbols-outlined text-4xl">engineering</span></div><h4 class="font-bold mb-2">3. Производство</h4><p class="text-sm text-slate-500">Изготовление бетона строго по ГОСТ.</p></div>
+            <div class="text-center"><div class="size-20 bg-white border-2 border-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-6 text-[#f56624] shadow-sm"><span class="material-symbols-outlined text-4xl">local_shipping</span></div><h4 class="font-bold mb-2">4. Доставка</h4><p class="text-sm text-slate-500">Отгрузка на объекте с GPS-сопровождением.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Fleet -->
+<section class="py-24 lg:py-32 bg-slate-950 relative overflow-hidden" id="fleet">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(245,102,36,0.12),transparent_60%)]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-[#f56624] text-xs font-bold uppercase tracking-widest mb-4">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#f56624] animate-pulse"></span>50+ единиц техники
+                </div>
+                <h2 class="text-4xl lg:text-6xl font-black text-white leading-tight">Наш автопарк</h2>
+                <p class="text-slate-400 text-lg mt-4 max-w-xl">Современный парк спецтехники для доставки и укладки бетона любой сложности.</p>
+            </div>
+            <div class="flex gap-4 shrink-0">
+                <div class="text-center px-6 py-4 rounded-2xl bg-white/5 border border-white/10"><div class="text-3xl font-black text-white">50+</div><div class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Машин</div></div>
+                <div class="text-center px-6 py-4 rounded-2xl bg-white/5 border border-white/10"><div class="text-3xl font-black text-white">24/7</div><div class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Работа</div></div>
+                <div class="text-center px-6 py-4 rounded-2xl bg-white/5 border border-white/10"><div class="text-3xl font-black text-white">GPS</div><div class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">Трекинг</div></div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
+            <div class="group relative rounded-3xl overflow-hidden bg-slate-900 border border-white/5 hover:border-orange-500/40 transition-all duration-500 hover:-translate-y-1">
+                <div class="relative h-52 overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="MAN"/><div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent"></div><div class="absolute top-4 left-4"><span class="px-3 py-1 rounded-full bg-[#f56624] text-white text-xs font-black uppercase">Доставка</span></div></div>
+                <div class="p-6"><h4 class="text-xl font-black text-white mb-1">Автобетоносмесители MAN</h4><p class="text-slate-400 text-sm mb-4">Объём барабана 7–9 м³. Доставка бетона с сохранением подвижности смеси.</p><div class="grid grid-cols-2 gap-3"><div class="bg-white/5 rounded-xl p-3"><div class="text-white font-black text-lg">9 м³</div><div class="text-slate-500 text-xs font-bold uppercase">Объём</div></div><div class="bg-white/5 rounded-xl p-3"><div class="text-white font-black text-lg">20 ед.</div><div class="text-slate-500 text-xs font-bold uppercase">В парке</div></div></div></div>
+            </div>
+            <div class="group relative rounded-3xl overflow-hidden bg-slate-900 border border-white/5 hover:border-orange-500/40 transition-all duration-500 hover:-translate-y-1">
+                <div class="relative h-52 overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="КАМАЗ"/><div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent"></div><div class="absolute top-4 left-4"><span class="px-3 py-1 rounded-full bg-[#f56624] text-white text-xs font-black uppercase">Доставка</span></div></div>
+                <div class="p-6"><h4 class="text-xl font-black text-white mb-1">Автобетоносмесители КАМАЗ</h4><p class="text-slate-400 text-sm mb-4">Отечественная надёжность для городских объектов. Высокая проходимость.</p><div class="grid grid-cols-2 gap-3"><div class="bg-white/5 rounded-xl p-3"><div class="text-white font-black text-lg">7 м³</div><div class="text-slate-500 text-xs font-bold uppercase">Объём</div></div><div class="bg-white/5 rounded-xl p-3"><div class="text-white font-black text-lg">15 ед.</div><div class="text-slate-500 text-xs font-bold uppercase">В парке</div></div></div></div>
+            </div>
+            <div class="group relative rounded-3xl overflow-hidden bg-slate-900 border border-white/5 hover:border-orange-500/40 transition-all duration-500 hover:-translate-y-1">
+                <div class="relative h-52 overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1590496793929-36417d3117de?w=600&q=80" alt="Насос"/><div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent"></div><div class="absolute top-4 left-4"><span class="px-3 py-1 rounded-full bg-orange-500 text-white text-xs font-black uppercase">Насос</span></div></div>
+                <div class="p-6"><h4 class="text-xl font-black text-white mb-1">Стационарные бетононасосы</h4><p class="text-slate-400 text-sm mb-4">Подача бетона до 200 м по горизонтали и 80 м по вертикали.</p><div class="grid grid-cols-2 gap-3"><div class="bg-white/5 rounded-xl p-3"><div class="text-white font-black text-lg">80 м³/ч</div><div class="text-slate-500 text-xs font-bold uppercase">Подача</div></div><div class="bg-white/5 rounded-xl p-3"><div class="text-white font-black text-lg">5 ед.</div><div class="text-slate-500 text-xs font-bold uppercase">В парке</div></div></div></div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="group relative rounded-3xl overflow-hidden bg-slate-900 border border-white/5 hover:border-orange-500/40 transition-all duration-500 hover:-translate-y-1 lg:col-span-2">
+                <div class="relative h-52 overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&q=80" alt="Стрела"/><div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div><div class="absolute top-4 left-4"><span class="px-3 py-1 rounded-full bg-blue-500 text-white text-xs font-black uppercase">Стрела</span></div></div>
+                <div class="p-6"><h4 class="text-xl font-black text-white mb-1">Автобетононасосы со стрелой</h4><p class="text-slate-400 text-sm mb-4">Стрела 36–52 м для высотного строительства. Подача в труднодоступные места.</p><div class="grid grid-cols-3 gap-3"><div class="bg-white/5 rounded-xl p-3 text-center"><div class="text-white font-black text-lg">52 м</div><div class="text-slate-500 text-xs font-bold uppercase">Стрела</div></div><div class="bg-white/5 rounded-xl p-3 text-center"><div class="text-white font-black text-lg">160 м³/ч</div><div class="text-slate-500 text-xs font-bold uppercase">Подача</div></div><div class="bg-white/5 rounded-xl p-3 text-center"><div class="text-white font-black text-lg">8 ед.</div><div class="text-slate-500 text-xs font-bold uppercase">В парке</div></div></div></div>
+            </div>
+            <div class="group relative rounded-3xl overflow-hidden bg-slate-900 border border-white/5 hover:border-orange-500/40 transition-all duration-500 hover:-translate-y-1">
+                <div class="relative h-52 overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=600&q=80" alt="Самосвал"/><div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent"></div><div class="absolute top-4 left-4"><span class="px-3 py-1 rounded-full bg-slate-600 text-white text-xs font-black uppercase">Сыпучие</span></div></div>
+                <div class="p-6"><h4 class="text-xl font-black text-white mb-1">Самосвалы VOLVO / MAN</h4><p class="text-slate-400 text-sm mb-4">Доставка щебня, песка, ПГС и других сыпучих материалов на объект.</p><div class="grid grid-cols-2 gap-3"><div class="bg-white/5 rounded-xl p-3"><div class="text-white font-black text-lg">20 т</div><div class="text-slate-500 text-xs font-bold uppercase">Грузоподъём.</div></div><div class="bg-white/5 rounded-xl p-3"><div class="text-white font-black text-lg">7 ед.</div><div class="text-slate-500 text-xs font-bold uppercase">В парке</div></div></div></div>
+            </div>
+        </div>
+        <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 p-8 rounded-3xl bg-white/5 border border-white/10">
+            <div><p class="text-white font-black text-xl mb-1">Нужна аренда техники?</p><p class="text-slate-400 text-sm">Предоставляем технику с оператором. Почасовая и посменная аренда.</p></div>
+            <a href="contact.html" class="shrink-0 bg-[#f56624] text-white px-8 py-4 rounded-2xl font-black hover:bg-orange-600 transition-all shadow-xl flex items-center gap-2"><span class="material-symbols-outlined">phone_in_talk</span>Запросить технику</a>
+        </div>
+    </div>
+</section>
+
+<!-- Partners & Testimonials -->
+<section class="py-24 bg-slate-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl lg:text-4xl font-black text-center mb-16">Нам доверяют лидеры отрасли</h2>
+        <div class="flex flex-wrap justify-center gap-12 opacity-40 mb-20">
+            <div class="text-xl font-black">РОСС-СТРОЙ</div>
+            <div class="text-xl font-black">МОС-ДОМ</div>
+            <div class="text-xl font-black">КАПИТАЛ-Г</div>
+            <div class="text-xl font-black">РЕГИОН-КОНСТ</div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="p-10 rounded-3xl bg-white/5 border border-white/10">
+                <p class="text-lg italic text-slate-300 mb-6">"Moscow Concrete — основной поставщик для наших ЖК. Контроль качества безупречен."</p>
+                <div class="flex items-center gap-4"><div class="size-12 rounded-full bg-slate-700"></div><div><p class="font-bold">Андрей Волков</p><p class="text-xs text-slate-500 uppercase tracking-widest font-bold">Capital-G</p></div></div>
+            </div>
+            <div class="p-10 rounded-3xl bg-white/5 border border-white/10">
+                <p class="text-lg italic text-slate-300 mb-6">"Профессиональный подход к логистике. Рекомендуем для сложных городских проектов."</p>
+                <div class="flex items-center gap-4"><div class="size-12 rounded-full bg-slate-700"></div><div><p class="font-bold">Елена Соколова</p><p class="text-xs text-slate-500 uppercase tracking-widest font-bold">MOS-HOUSE</p></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-slate-200 pt-24 pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-16 mb-16">
+            <div class="lg:col-span-1">
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="bg-[#f56624] p-1.5 rounded-lg text-white"><span class="material-symbols-outlined block">conveyor_belt</span></div>
+                    <span class="text-xl font-extrabold tracking-tight text-slate-900">MOSCOW<span class="text-[#f56624]">CONCRETE</span></span>
+                </div>
+                <p class="text-slate-500 text-sm mb-6 leading-relaxed">Ведущий производитель высококачественного бетона в Московском регионе.</p>
+            </div>
+            <div><h5 class="font-black text-slate-900 mb-6 uppercase tracking-widest text-xs">Разделы</h5><ul class="space-y-4 text-sm font-semibold text-slate-500"><li><a class="hover:text-[#f56624] transition-colors" href="catalog.html">Прайс-лист</a></li><li><a class="hover:text-[#f56624] transition-colors" href="index.html#calculator">Калькулятор</a></li><li><a class="hover:text-[#f56624] transition-colors" href="about.html">О компании</a></li></ul></div>
+            <div><h5 class="font-black text-slate-900 mb-6 uppercase tracking-widest text-xs">Помощь</h5><ul class="space-y-4 text-sm font-semibold text-slate-500"><li><a class="hover:text-[#f56624] transition-colors" href="contact.html">Минимальный объем?</a></li><li><a class="hover:text-[#f56624] transition-colors" href="contact.html">Способы оплаты?</a></li></ul></div>
+            <div><h5 class="font-black text-slate-900 mb-6 uppercase tracking-widest text-xs">Контакты</h5><div class="space-y-4"><div><p class="text-xs font-bold text-slate-400 mb-1">Телефон</p><a class="text-2xl font-black text-[#f56624]" href="tel:+74951234567">+7 (495) 123-45-67</a></div><div><p class="text-xs font-bold text-slate-400 mb-1">E-mail</p><p class="text-sm font-bold text-slate-800">info@mosconcrete.ru</p></div><div><p class="text-xs font-bold text-slate-400 mb-1">Адрес</p><p class="text-sm font-bold text-slate-800">Москва, ул. Промышленная, 10</p></div></div></div>
+        </div>
+        <div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">© 2025 Moscow Concrete Production Group</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Order Modal -->
+<div id="order-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeOrderModal()"></div>
+    <div class="relative w-full max-w-lg bg-slate-900/95 backdrop-blur-xl border border-white/20 rounded-[2.5rem] shadow-2xl overflow-hidden animate-modal">
+        <div class="p-8 md:p-12">
+            <button onclick="closeOrderModal()" class="absolute top-6 right-6 size-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white/10 transition-all"><span class="material-symbols-outlined">close</span></button>
+            <div class="mb-8">
+                <span class="inline-block px-4 py-1.5 bg-orange-500/20 text-[#f56624] text-[10px] font-black uppercase tracking-widest rounded-full mb-4">Быстрый заказ</span>
+                <h2 class="text-3xl font-black text-white mb-2">Оформить <span class="text-[#f56624]">заявку</span></h2>
+                <div id="modal-product-name" class="text-slate-300 font-bold text-lg">Выбрано: Бетон М300</div>
+            </div>
+            <form id="order-form" action="https://formspree.io/f/YOUR_ID" method="POST" class="space-y-5">
+                <input type="hidden" name="product" id="modal-product-input" value=""/>
+                <div class="space-y-1.5"><label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Ваше имя</label><input type="text" name="name" required placeholder="Иван Иванов" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none text-white placeholder:text-slate-500 focus:border-[#f56624] transition-all"/></div>
+                <div class="space-y-1.5"><label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Телефон</label><input type="tel" name="phone" required placeholder="+7 (999) 000-00-00" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none text-white placeholder:text-slate-500 focus:border-[#f56624] transition-all"/></div>
+                <div class="space-y-1.5"><label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Адрес доставки</label><textarea name="address" placeholder="Город, улица, номер дома..." class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none text-white min-h-[80px] placeholder:text-slate-500 focus:border-[#f56624] transition-all"></textarea></div>
+                <button type="submit" class="w-full bg-[#f56624] text-white font-black py-5 rounded-2xl text-lg hover:bg-orange-600 transition-all shadow-xl flex items-center justify-center gap-3"><span class="material-symbols-outlined">shopping_cart_checkout</span>Подтвердить заказ</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

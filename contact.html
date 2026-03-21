@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Контакты | Moscow Concrete</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script>tailwind.config={theme:{extend:{colors:{"primary":"#f56624"}}}}</script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-[Inter]">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 glass-header border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+            <a href="index.html" class="flex items-center gap-2">
+                <div class="bg-[#f56624] p-1.5 rounded-lg text-white"><span class="material-symbols-outlined block">conveyor_belt</span></div>
+                <span class="text-xl font-extrabold tracking-tight text-slate-900">MOSCOW<span class="text-[#f56624]">CONCRETE</span></span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-semibold hover:text-[#f56624] transition-colors" href="index.html">Главная</a>
+                <a class="text-sm font-semibold hover:text-[#f56624] transition-colors" href="catalog.html">Каталог</a>
+                <a class="text-sm font-semibold hover:text-[#f56624] transition-colors" href="about.html">О нас</a>
+                <a class="text-sm font-semibold text-[#f56624]" href="contact.html">Контакты</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="contact.html" class="bg-[#f56624] text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-orange-600 transition-all shadow-lg">Заказать звонок</a>
+                <button class="md:hidden p-2 rounded-lg hover:bg-slate-100" onclick="toggleMobileMenu()"><span class="material-symbols-outlined">menu</span></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+            <a class="block px-4 py-2 text-sm font-semibold hover:text-[#f56624]" href="index.html">Главная</a>
+            <a class="block px-4 py-2 text-sm font-semibold hover:text-[#f56624]" href="catalog.html">Каталог</a>
+            <a class="block px-4 py-2 text-sm font-semibold hover:text-[#f56624]" href="about.html">О нас</a>
+            <a class="block px-4 py-2 text-sm font-semibold text-[#f56624]" href="contact.html">Контакты</a>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-10 py-16 space-y-12">
+
+    <!-- Hero -->
+    <section class="flex flex-col md:flex-row items-center gap-12 bg-white p-8 md:p-10 rounded-[3rem] border border-slate-100 shadow-2xl">
+        <div class="flex-1 space-y-6">
+            <nav class="flex text-sm text-slate-400 gap-2"><a class="hover:text-[#f56624]" href="index.html">Главная</a><span>/</span><span class="text-slate-600">Контакты</span></nav>
+            <span class="inline-block px-4 py-1.5 bg-orange-50 text-[#f56624] text-xs font-bold uppercase tracking-wider rounded-full">Контакты и поддержка</span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-tight">Мы на связи <br/><span class="text-[#f56624]">24 часа в сутки</span></h1>
+            <p class="text-xl text-slate-500 leading-relaxed">Наши эксперты готовы проконсультировать вас по любым вопросам производства и доставки бетона.</p>
+        </div>
+        <div class="flex-1 w-full h-[350px] md:h-[400px] rounded-[2rem] overflow-hidden relative shadow-xl">
+            <img alt="Office" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl8PhiMLA3qluA47nmGFlIZoHcivYWLCIwUvwTfWI92M-NR9PLRePJW0oginaRjFWJwlCkSJMzRb-sMXJHVqz2ntam173fEebMWH0r3BiNRodhjVuVASYLhh8WSxshnzeMudjMoqvoE5_8q4Heh95J8SuQK5iACX4dwxJUlHkVYj99fsuOv2RO_E-voyHWZEcKLTcAKWZHi64kT1PlAi5G_ZUmHL5TKzMrMoBsgO4gMXys6tMcIYkXK_dy82dJvRUofjQKHDp3W-Gl"/>
+        </div>
+    </section>
+
+    <!-- Contact Cards -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-10 rounded-[2rem] border border-slate-100 shadow-xl hover:-translate-y-2 transition-all">
+            <div class="w-16 h-16 bg-orange-50 text-[#f56624] rounded-2xl flex items-center justify-center mb-6"><span class="material-symbols-outlined text-3xl">call</span></div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Звоните нам</h3>
+            <p class="text-slate-500 mb-4">Бесплатная линия 24/7</p>
+            <a href="tel:+74951234567" class="text-xl font-black text-[#f56624] hover:underline">+7 (495) 123-45-67</a>
+        </div>
+        <div class="bg-white p-10 rounded-[2rem] border border-slate-100 shadow-xl hover:-translate-y-2 transition-all">
+            <div class="w-16 h-16 bg-orange-50 text-[#f56624] rounded-2xl flex items-center justify-center mb-6"><span class="material-symbols-outlined text-3xl">mail</span></div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Пишите нам</h3>
+            <p class="text-slate-500 mb-4">Ответ в течение 15 минут</p>
+            <a href="mailto:info@mosconcrete.ru" class="text-xl font-black text-[#f56624] hover:underline">info@mosconcrete.ru</a>
+        </div>
+        <div class="bg-white p-10 rounded-[2rem] border border-slate-100 shadow-xl hover:-translate-y-2 transition-all">
+            <div class="w-16 h-16 bg-orange-50 text-[#f56624] rounded-2xl flex items-center justify-center mb-6"><span class="material-symbols-outlined text-3xl">location_on</span></div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Наш офис</h3>
+            <p class="text-slate-500 mb-4">Пн–Пт: 09:00 – 18:00</p>
+            <p class="text-lg font-bold text-slate-800">Москва, Варшавское ш., 125</p>
+        </div>
+    </section>
+
+    <!-- Delivery Rates -->
+    <section class="bg-white rounded-[3rem] border border-slate-100 shadow-xl overflow-hidden">
+        <div class="p-8 md:p-10 border-b border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <h2 class="text-3xl font-black text-slate-900">Стоимость доставки</h2>
+                <p class="text-slate-500 mt-1">Тарифы зависят от удаленности вашего объекта от РБУ</p>
+            </div>
+            <div class="px-6 py-3 bg-orange-50 rounded-xl text-[#f56624] font-black">Цены указаны за 1 м³</div>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="bg-slate-50 text-slate-400 text-xs font-black uppercase tracking-widest">
+                        <th class="px-6 md:px-10 py-6">Расстояние (км)</th>
+                        <th class="px-6 md:px-10 py-6">До 5 м³</th>
+                        <th class="px-6 md:px-10 py-6">6–10 м³</th>
+                        <th class="px-6 md:px-10 py-6">Свыше 10 м³</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    <tr class="hover:bg-slate-50/50 transition-all">
+                        <td class="px-6 md:px-10 py-5 font-black text-slate-900">До 10 км</td>
+                        <td class="px-6 md:px-10 py-5 text-slate-600">500 ₽</td>
+                        <td class="px-6 md:px-10 py-5 text-slate-600">400 ₽</td>
+                        <td class="px-6 md:px-10 py-5 font-bold text-[#f56624]">300 ₽</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50/50 transition-all">
+                        <td class="px-6 md:px-10 py-5 font-black text-slate-900">10–30 км</td>
+                        <td class="px-6 md:px-10 py-5 text-slate-600">800 ₽</td>
+                        <td class="px-6 md:px-10 py-5 text-slate-600">650 ₽</td>
+                        <td class="px-6 md:px-10 py-5 font-bold text-[#f56624]">500 ₽</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50/50 transition-all">
+                        <td class="px-6 md:px-10 py-5 font-black text-slate-900">30–60 км</td>
+                        <td class="px-6 md:px-10 py-5 text-slate-600">1 200 ₽</td>
+                        <td class="px-6 md:px-10 py-5 text-slate-600">1 000 ₽</td>
+                        <td class="px-6 md:px-10 py-5 font-bold text-[#f56624]">800 ₽</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50/50 transition-all">
+                        <td class="px-6 md:px-10 py-5 font-black text-slate-900">Свыше 60 км</td>
+                        <td class="px-6 md:px-10 py-5 text-slate-600">По договору</td>
+                        <td class="px-6 md:px-10 py-5 text-slate-600">По договору</td>
+                        <td class="px-6 md:px-10 py-5 font-bold text-[#f56624]">По договору</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Form + Map -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-12">
+        <!-- Form -->
+        <div class="lg:col-span-5 bg-slate-900 p-8 md:p-12 rounded-[3rem] text-white shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-[#f56624]/20 rounded-full blur-3xl"></div>
+            <h2 class="text-4xl font-black mb-8 relative z-10">Быстрая заявка</h2>
+            <div id="form-success" class="hidden bg-green-500/10 text-green-400 p-6 rounded-2xl border border-green-500/20 mb-8 flex items-center gap-3">
+                <span class="material-symbols-outlined">check_circle</span>
+                Заявка отправлена! Мы свяжемся с вами в ближайшее время.
+            </div>
+            <form action="https://formspree.io/f/YOUR_ID" method="POST" class="space-y-6 relative z-10" id="contact-form">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1 block">Имя</label>
+                        <input type="text" name="name" required placeholder="Иван Иванов" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 focus:border-[#f56624] outline-none transition-all text-white placeholder:text-slate-600"/>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1 block">Телефон</label>
+                        <input type="tel" name="phone" required placeholder="+7 (999) 000-00-00" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 focus:border-[#f56624] outline-none transition-all text-white placeholder:text-slate-600"/>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1 block">Тип запроса</label>
+                    <select name="type" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 focus:border-[#f56624] outline-none transition-all text-white appearance-none cursor-pointer">
+                        <option class="bg-slate-900" value="Консультация">Интересует бетон</option>
+                        <option class="bg-slate-900" value="Аренда">Аренда бетононасоса</option>
+                        <option class="bg-slate-900" value="Партнерство">Сотрудничество</option>
+                    </select>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1 block">Адрес доставки</label>
+                    <input type="text" name="address" placeholder="Укажите адрес строительной площадки" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 focus:border-[#f56624] outline-none transition-all text-white placeholder:text-slate-600"/>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1 block">Сообщение</label>
+                    <textarea name="message" placeholder="Опишите ваши требования..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 focus:border-[#f56624] outline-none transition-all text-white min-h-[120px] placeholder:text-slate-600"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-[#f56624] text-white font-black py-5 rounded-2xl text-lg hover:bg-orange-600 transition-all shadow-xl flex items-center justify-center gap-3">
+                    <span class="material-symbols-outlined">send</span>Отправить сообщение
+                </button>
+            </form>
+        </div>
+        <!-- Map -->
+        <div class="lg:col-span-7 rounded-[3rem] overflow-hidden border border-slate-200 shadow-2xl h-[500px] lg:h-auto relative min-h-[400px]">
+            <div id="contact-map" class="w-full h-full"></div>
+            <div class="absolute top-8 left-8 z-10 bg-white/95 backdrop-blur shadow-2xl rounded-2xl p-6 border border-slate-100 max-w-[200px]">
+                <p class="text-[10px] font-black uppercase text-[#f56624] tracking-widest mb-2">Главный офис</p>
+                <p class="text-sm font-bold text-slate-900 leading-tight">Москва, Варшавское ш., 125</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-slate-200 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <a href="index.html" class="flex items-center gap-2">
+            <div class="bg-[#f56624] p-1.5 rounded-lg text-white"><span class="material-symbols-outlined block">conveyor_belt</span></div>
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">MOSCOW<span class="text-[#f56624]">CONCRETE</span></span>
+        </a>
+        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">© 2025 Moscow Concrete Production Group</p>
+        <a class="text-2xl font-black text-[#f56624]" href="tel:+74951234567">+7 (495) 123-45-67</a>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/main.js"></script>
+<script>
+// Show success message if redirected back with ?sent=1
+document.getElementById('contact-form').addEventListener('submit', function() {
+    setTimeout(() => {
+        document.getElementById('form-success').classList.remove('hidden');
+        document.getElementById('form-success').classList.add('flex');
+    }, 500);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Каталог продукции | Moscow Concrete</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script>tailwind.config={theme:{extend:{colors:{"primary":"#f56624"}}}}</script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-[Inter]">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 glass-header border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+            <a href="index.html" class="flex items-center gap-2">
+                <div class="bg-[#f56624] p-1.5 rounded-lg text-white"><span class="material-symbols-outlined block">conveyor_belt</span></div>
+                <span class="text-xl font-extrabold tracking-tight text-slate-900">MOSCOW<span class="text-[#f56624]">CONCRETE</span></span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-semibold hover:text-[#f56624] transition-colors" href="index.html">Главная</a>
+                <a class="text-sm font-semibold text-[#f56624]" href="catalog.html">Каталог</a>
+                <a class="text-sm font-semibold hover:text-[#f56624] transition-colors" href="about.html">О нас</a>
+                <a class="text-sm font-semibold hover:text-[#f56624] transition-colors" href="contact.html">Контакты</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="contact.html" class="bg-[#f56624] text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-orange-600 transition-all shadow-lg">Заказать звонок</a>
+                <button class="md:hidden p-2 rounded-lg hover:bg-slate-100" onclick="toggleMobileMenu()"><span class="material-symbols-outlined">menu</span></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+            <a class="block px-4 py-2 text-sm font-semibold hover:text-[#f56624]" href="index.html">Главная</a>
+            <a class="block px-4 py-2 text-sm font-semibold text-[#f56624]" href="catalog.html">Каталог</a>
+            <a class="block px-4 py-2 text-sm font-semibold hover:text-[#f56624]" href="about.html">О нас</a>
+            <a class="block px-4 py-2 text-sm font-semibold hover:text-[#f56624]" href="contact.html">Контакты</a>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 md:px-10 py-12">
+    <div class="flex flex-col gap-10">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div>
+                <nav class="flex text-sm text-slate-400 gap-2 mb-4"><a class="hover:text-[#f56624]" href="index.html">Главная</a><span>/</span><span class="text-slate-600">Каталог</span></nav>
+                <h1 class="text-4xl lg:text-6xl font-black tracking-tight text-slate-900">Продукция и <span class="text-[#f56624]">цены</span></h1>
+            </div>
+            <div class="relative w-full md:w-[400px]">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                <input id="search-input" class="w-full rounded-2xl border-0 bg-white pl-12 pr-6 py-5 shadow-2xl focus:ring-2 focus:ring-orange-200 outline-none" placeholder="Поиск по названию..." oninput="filterProducts()"/>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="flex flex-wrap gap-2 border-b border-slate-100 pb-8">
+            <button onclick="setCategory('all')" id="btn-all" class="px-6 py-3 rounded-xl font-bold text-sm bg-slate-900 text-white shadow-xl">Все товары</button>
+            <button onclick="setCategory('Бетонные смеси')" id="btn-Бетонные смеси" class="px-6 py-3 rounded-xl font-bold text-sm bg-white text-slate-600 hover:bg-slate-50">Бетонные смеси</button>
+            <button onclick="setCategory('Блоки')" id="btn-Блоки" class="px-6 py-3 rounded-xl font-bold text-sm bg-white text-slate-600 hover:bg-slate-50">Блоки</button>
+            <button onclick="setCategory('Аренда')" id="btn-Аренда" class="px-6 py-3 rounded-xl font-bold text-sm bg-white text-slate-600 hover:bg-slate-50">Аренда</button>
+        </div>
+
+        <!-- Grid -->
+        <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
+
+        <!-- CTA -->
+        <div class="mt-12 bg-slate-900 rounded-[3rem] p-10 md:p-20 relative overflow-hidden shadow-2xl">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,102,36,0.15),transparent)]"></div>
+            <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+                <div class="max-w-2xl text-center lg:text-left">
+                    <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Не нашли нужную марку?</h2>
+                    <p class="text-slate-400 text-lg">Свяжитесь с нашим технологом. Мы изготовим бетонную смесь по вашему индивидуальному рецепту.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+                    <a href="contact.html" class="bg-[#f56624] text-white px-10 py-5 rounded-2xl font-black text-lg shadow-xl hover:bg-orange-600 transition-all text-center">Консультация эксперта</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-slate-200 pt-16 pb-8 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <a href="index.html" class="flex items-center gap-2">
+            <div class="bg-[#f56624] p-1.5 rounded-lg text-white"><span class="material-symbols-outlined block">conveyor_belt</span></div>
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">MOSCOW<span class="text-[#f56624]">CONCRETE</span></span>
+        </a>
+        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">© 2025 Moscow Concrete Production Group</p>
+        <a class="text-2xl font-black text-[#f56624]" href="tel:+74951234567">+7 (495) 123-45-67</a>
+    </div>
+</footer>
+
+<!-- Order Modal -->
+<div id="order-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeOrderModal()"></div>
+    <div class="relative w-full max-w-lg bg-slate-900/95 border border-white/20 rounded-[2.5rem] shadow-2xl overflow-hidden animate-modal">
+        <div class="p-8 md:p-12">
+            <button onclick="closeOrderModal()" class="absolute top-6 right-6 size-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white/10"><span class="material-symbols-outlined">close</span></button>
+            <div class="mb-8">
+                <span class="inline-block px-4 py-1.5 bg-orange-500/20 text-[#f56624] text-[10px] font-black uppercase tracking-widest rounded-full mb-4">Быстрый заказ</span>
+                <h2 class="text-3xl font-black text-white mb-2">Оформить <span class="text-[#f56624]">заявку</span></h2>
+                <div id="modal-product-name" class="text-slate-300 font-bold text-lg"></div>
+            </div>
+            <form action="https://formspree.io/f/YOUR_ID" method="POST" class="space-y-5">
+                <input type="hidden" name="product" id="modal-product-input"/>
+                <div><label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 block mb-1">Ваше имя</label><input type="text" name="name" required placeholder="Иван Иванов" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none text-white placeholder:text-slate-500 focus:border-[#f56624] transition-all"/></div>
+                <div><label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 block mb-1">Телефон</label><input type="tel" name="phone" required placeholder="+7 (999) 000-00-00" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none text-white placeholder:text-slate-500 focus:border-[#f56624] transition-all"/></div>
+                <div><label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 block mb-1">Адрес доставки</label><textarea name="address" placeholder="Город, улица, дом..." class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none text-white min-h-[80px] placeholder:text-slate-500 focus:border-[#f56624] transition-all"></textarea></div>
+                <button type="submit" class="w-full bg-[#f56624] text-white font-black py-5 rounded-2xl text-lg hover:bg-orange-600 transition-all shadow-xl flex items-center justify-center gap-3"><span class="material-symbols-outlined">shopping_cart_checkout</span>Подтвердить заказ</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+const products = [
+    { name: 'Бетон М100 (В7.5)', category: 'Бетонные смеси', price: 3500, unit: 'м³', desc: 'Для подготовительных работ и стяжек.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCIdZCbUvhIfLmstUJnnrq5uJ8G_qyi-ec6PsaqmJMWAVQUdgzwmfQX6Cy_eSPO0qBXxzdxjV067df4SCRZmhhyfsOBDwMwCjpfO71oeyVcYQN4UZN6Z654apa-kuhMRATLZZoWQyl57Om5hz7_5xyfh_LE2OfUBKt2BD7Br5MFrrKVILNuTpYcKKod27PyhOLmwqylbwwSa8a29TDTnPzbPm1ifzMySA6s3hv_Wq2OewX5ppB9nRByEKzP_nlCevBZGt7kPx2zK2ws' },
+    { name: 'Бетон М200 (В15)', category: 'Бетонные смеси', price: 3800, unit: 'м³', desc: 'Для фундаментов и отмосток.', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80' },
+    { name: 'Бетон М300 (В22.5)', category: 'Бетонные смеси', price: 4250, unit: 'м³', desc: 'Универсальный бетон для несущих конструкций.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD9w82fsroClxvgxq-w1lPP4AtQtUc0pNceM7veInf1Ryfn2VUr35QZ44NRyhK21Hnk2ghqzAlDhdg4ueAFQF15ihJUHoxt4cw-CaTVTVilE6jrOExIZuweJ3LqcCBBut5nf0Cp52x6s1Zh8IA3sAxFxfU1u_bvHlDxa_qhKrhvE3iGSjM6IFLcpZAaNU7m0k04uhO5J2GgCV_Dm_7XjyJJ5mVzW_ECAWQMn6p5G7WB6xrOCZS_qZUQQK4eNP8QKt2yV-N4uWJeKo1Y' },
+    { name: 'Бетон М400 (В30)', category: 'Бетонные смеси', price: 4800, unit: 'м³', desc: 'Для высоконагруженных конструкций и мостов.', img: 'https://images.unsplash.com/photo-1590496793929-36417d3117de?w=400&q=80' },
+    { name: 'Бетон М500 (В40)', category: 'Бетонные смеси', price: 5500, unit: 'м³', desc: 'Специальный бетон для особо ответственных объектов.', img: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&q=80' },
+    { name: 'ФБС блок 24.4.6', category: 'Блоки', price: 3100, unit: 'шт', desc: 'Фундаментный блок стеновой по ГОСТ 13579-78.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDss1LxPemr8o1bHiRaLr-31OXCe_UBlBpLopJ9IRQXYJivvU7acSUfdOtMZ3kg7Z6UiUg3S1GhmrKixtH5UHCRJ_K4WzG48Nkj-GzWECvTiIgpmyAKcB3oIgbJI2CQb2-bPR4MP0I-4rPPwUZmybZhRfRWVprpL1aG9iZJu1VY8deUP-wTO3TIcMfZCigb8tUePmh7-sbOUgYZ-mDiK6-3h7gg-b5V7MmboVx2gFAEegrBrGfm_cUJjzhzRDjpkhjWydfeo6UweZdN' },
+    { name: 'ФБС блок 12.4.6', category: 'Блоки', price: 1800, unit: 'шт', desc: 'Фундаментный блок стеновой, малый формат.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDss1LxPemr8o1bHiRaLr-31OXCe_UBlBpLopJ9IRQXYJivvU7acSUfdOtMZ3kg7Z6UiUg3S1GhmrKixtH5UHCRJ_K4WzG48Nkj-GzWECvTiIgpmyAKcB3oIgbJI2CQb2-bPR4MP0I-4rPPwUZmybZhRfRWVprpL1aG9iZJu1VY8deUP-wTO3TIcMfZCigb8tUePmh7-sbOUgYZ-mDiK6-3h7gg-b5V7MmboVx2gFAEegrBrGfm_cUJjzhzRDjpkhjWydfeo6UweZdN' },
+    { name: 'Аренда насоса 32м', category: 'Аренда', price: 18000, unit: 'смена', desc: 'Вылет стрелы 32м для подачи бетона на высоту.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDe3u1mvHejKNHBWGVNmedYVy5g0SvPVmBcaMI_Jnrae_dMvm74TUU36wSIwleDyhtfVKF-HFWsZfpehOmbY1XLcvI4jxH_rmYx5_uL3YqeUEBdaH_G9OJozVA4tqSu7h852SEpjPJXqZOhylTlZCnYph_aLYb0Om3CmxFIRKe_zi55mmnigHPgidORU8J28pmYSaH7oRHrAF5yHddj_XKmzBPzcxhXdNXC2iE1Gn3aD1iCIqs0VOvifS8BUacchiTGiQpmhKnXjPKd' },
+    { name: 'Аренда насоса 52м', category: 'Аренда', price: 28000, unit: 'смена', desc: 'Вылет стрелы 52м для высотного строительства.', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80' },
+];
+
+let currentCategory = 'all';
+
+function setCategory(cat) {
+    currentCategory = cat;
+    document.querySelectorAll('[id^="btn-"]').forEach(b => {
+        b.className = 'px-6 py-3 rounded-xl font-bold text-sm bg-white text-slate-600 hover:bg-slate-50';
+    });
+    const active = document.getElementById('btn-' + cat);
+    if (active) active.className = 'px-6 py-3 rounded-xl font-bold text-sm bg-slate-900 text-white shadow-xl';
+    filterProducts();
+}
+
+function filterProducts() {
+    const search = document.getElementById('search-input')?.value.toLowerCase() || '';
+    const filtered = products.filter(p =>
+        (currentCategory === 'all' || p.category === currentCategory) &&
+        (p.name.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search))
+    );
+    const grid = document.getElementById('catalog-grid');
+    grid.innerHTML = filtered.map(p => `
+        <div class="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col">
+            <div class="h-56 overflow-hidden relative">
+                <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="${p.img}" alt="${p.name}"/>
+                <div class="absolute top-5 left-5"><span class="bg-white/95 backdrop-blur px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm text-slate-900">${p.category}</span></div>
+            </div>
+            <div class="p-8 flex flex-col flex-1">
+                <h3 class="font-black text-xl mb-3 text-slate-900 group-hover:text-[#f56624] transition-colors">${p.name}</h3>
+                <p class="text-sm text-slate-500 mb-8 leading-relaxed">${p.desc}</p>
+                <div class="mt-auto flex justify-between items-end">
+                    <div><span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Цена за ${p.unit}</span><span class="text-2xl font-black text-slate-900">${p.price.toLocaleString('ru-RU')} <span class="text-[#f56624]">₽</span></span></div>
+                    <button onclick="openOrderModal('${p.name}')" class="size-12 bg-slate-900 text-white rounded-xl hover:bg-[#f56624] transition-all shadow-lg flex items-center justify-center group-hover:-translate-y-1"><span class="material-symbols-outlined text-xl">add_shopping_cart</span></button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+filterProducts();
+</script>
+</body>
+</html>
