@@ -168,6 +168,91 @@
     </div>
 </section>
 
+<!-- Mini Catalog -->
+<section class="py-24 bg-white" id="products">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-50 border border-orange-100 text-[#f56624] text-xs font-bold uppercase tracking-widest mb-4">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#f56624]"></span>Популярные позиции
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-black text-slate-900 leading-tight">Наша продукция</h2>
+            </div>
+            <a href="catalog.html" class="shrink-0 flex items-center gap-2 text-[#f56624] font-black hover:gap-4 transition-all text-sm">
+                Весь каталог и цены <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+        </div>
+
+        <!-- Category tabs -->
+        <div class="flex flex-wrap gap-2 mb-10">
+            <button onclick="miniSetCat('all')" id="mini-btn-all" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-900 text-white shadow-lg">Все</button>
+            <button onclick="miniSetCat('Бетонные смеси')" id="mini-btn-mix" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors">Бетонные смеси</button>
+            <button onclick="miniSetCat('Блоки')" id="mini-btn-blocks" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors">Блоки</button>
+            <button onclick="miniSetCat('Аренда')" id="mini-btn-rent" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors">Аренда техники</button>
+        </div>
+
+        <!-- Grid -->
+        <div id="mini-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </div>
+</section>
+
+<script>
+(function(){
+    const miniProducts = [
+        { name: 'Бетон М100 (В7.5)', cat: 'Бетонные смеси', price: 3500, unit: 'м³', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80' },
+        { name: 'Бетон М200 (В15)',  cat: 'Бетонные смеси', price: 3800, unit: 'м³', img: 'https://images.unsplash.com/photo-1590496793929-36417d3117de?w=400&q=80' },
+        { name: 'Бетон М300 (В22.5)',cat: 'Бетонные смеси', price: 4250, unit: 'м³', img: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&q=80' },
+        { name: 'Бетон М400 (В30)',  cat: 'Бетонные смеси', price: 4800, unit: 'м³', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80' },
+        { name: 'Бетон М500 (В40)',  cat: 'Бетонные смеси', price: 5500, unit: 'м³', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80' },
+        { name: 'ФБС блок 24.4.6',   cat: 'Блоки',          price: 3100, unit: 'шт', img: 'https://images.unsplash.com/photo-1590496793929-36417d3117de?w=400&q=80' },
+        { name: 'ФБС блок 12.4.6',   cat: 'Блоки',          price: 1800, unit: 'шт', img: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&q=80' },
+        { name: 'Аренда насоса 32м', cat: 'Аренда',         price: 18000,unit: 'смена', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80' },
+    ];
+
+    let miniCat = 'all';
+
+    window.miniSetCat = function(cat) {
+        miniCat = cat;
+        ['all','mix','blocks','rent'].forEach(k => {
+            const b = document.getElementById('mini-btn-' + k);
+            if (b) b.className = 'px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors';
+        });
+        const map = { all:'all', 'Бетонные смеси':'mix', 'Блоки':'blocks', 'Аренда':'rent' };
+        const active = document.getElementById('mini-btn-' + map[cat]);
+        if (active) active.className = 'px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-900 text-white shadow-lg';
+        renderMini();
+    };
+
+    function renderMini() {
+        const list = miniProducts.filter(p => miniCat === 'all' || p.cat === miniCat).slice(0, 4);
+        document.getElementById('mini-catalog-grid').innerHTML = list.map(p => `
+            <div class="group bg-white rounded-[1.75rem] overflow-hidden border border-slate-100 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-400 flex flex-col">
+                <div class="h-44 overflow-hidden relative">
+                    <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="${p.img}" alt="${p.name}"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                    <span class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-900">${p.cat}</span>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="font-black text-lg text-slate-900 mb-1 group-hover:text-[#f56624] transition-colors">${p.name}</h3>
+                    <div class="mt-auto pt-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">за ${p.unit}</span>
+                            <span class="text-xl font-black text-slate-900">${p.price.toLocaleString('ru-RU')} <span class="text-[#f56624]">₽</span></span>
+                        </div>
+                        <a href="https://wa.me/79060370558?text=${encodeURIComponent('Хочу заказать: ' + p.name)}" target="_blank"
+                           class="size-11 bg-slate-900 text-white rounded-xl hover:bg-[#f56624] transition-all shadow-md flex items-center justify-center group-hover:-translate-y-0.5">
+                            <span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    renderMini();
+})();
+</script>
+
 <!-- Calculator -->
 <section class="py-24 bg-slate-900 text-white rounded-[3rem] mx-4 my-24 overflow-hidden relative" id="calculator">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,102,36,0.1),transparent)]"></div>
