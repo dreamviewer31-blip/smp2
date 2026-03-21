@@ -65,12 +65,12 @@ function initDeliveryMap() {
 function initContactMap() {
     const el = document.getElementById('contact-map');
     if (!el) return;
-    const map = L.map('contact-map').setView([55.6234, 37.6200], 14);
+    const map = L.map('contact-map').setView([55.5960, 36.1870], 15);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '© OpenStreetMap © CARTO'
     }).addTo(map);
-    L.circleMarker([55.6234, 37.6200], { radius: 12, fillColor: '#f56624', color: '#fff', weight: 3, fillOpacity: 1 })
-        .addTo(map).bindPopup('<b>Moscow Concrete HQ</b>');
+    L.circleMarker([55.5960, 36.1870], { radius: 12, fillColor: '#f56624', color: '#fff', weight: 3, fillOpacity: 1 })
+        .addTo(map).bindPopup('<b>SmpBeton.ru</b><br>пос. Тучково, ул. Восточная 25');
 }
 
 // Geolocation
