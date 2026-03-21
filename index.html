@@ -331,28 +331,188 @@
     </div>
 </section>
 
-<!-- Partners & Testimonials -->
-<section class="py-24 bg-slate-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl lg:text-4xl font-black text-center mb-16">Нам доверяют лидеры отрасли</h2>
-        <div class="flex flex-wrap justify-center gap-12 opacity-40 mb-20">
-            <div class="text-xl font-black">РОСС-СТРОЙ</div>
-            <div class="text-xl font-black">МОС-ДОМ</div>
-            <div class="text-xl font-black">КАПИТАЛ-Г</div>
-            <div class="text-xl font-black">РЕГИОН-КОНСТ</div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="p-10 rounded-3xl bg-white/5 border border-white/10">
-                <p class="text-lg italic text-slate-300 mb-6">"Moscow Concrete — основной поставщик для наших ЖК. Контроль качества безупречен."</p>
-                <div class="flex items-center gap-4"><div class="size-12 rounded-full bg-slate-700"></div><div><p class="font-bold">Андрей Волков</p><p class="text-xs text-slate-500 uppercase tracking-widest font-bold">Capital-G</p></div></div>
+<!-- Testimonials -->
+<section class="py-24 lg:py-32 bg-slate-950 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(245,102,36,0.1),transparent_60%)]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Header -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-[#f56624] text-xs font-bold uppercase tracking-widest mb-4">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#f56624] animate-pulse"></span>Отзывы клиентов
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-black text-white leading-tight">Нам доверяют<br/><span class="text-[#f56624]">сотни объектов</span></h2>
             </div>
-            <div class="p-10 rounded-3xl bg-white/5 border border-white/10">
-                <p class="text-lg italic text-slate-300 mb-6">"Профессиональный подход к логистике. Рекомендуем для сложных городских проектов."</p>
-                <div class="flex items-center gap-4"><div class="size-12 rounded-full bg-slate-700"></div><div><p class="font-bold">Елена Соколова</p><p class="text-xs text-slate-500 uppercase tracking-widest font-bold">MOS-HOUSE</p></div></div>
+            <div class="flex items-center gap-6 shrink-0">
+                <div class="text-center">
+                    <div class="text-4xl font-black text-white">4.9</div>
+                    <div class="flex gap-0.5 justify-center mt-1">
+                        <span class="text-[#f56624] text-lg">★★★★★</span>
+                    </div>
+                    <div class="text-xs text-slate-500 font-bold mt-1">средняя оценка</div>
+                </div>
+                <div class="w-px h-16 bg-white/10"></div>
+                <div class="text-center">
+                    <div class="text-4xl font-black text-white">200+</div>
+                    <div class="text-xs text-slate-500 font-bold mt-2">довольных клиентов</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider track -->
+        <div class="relative overflow-hidden" id="reviews-viewport">
+            <div class="flex gap-6 transition-transform duration-700 ease-in-out" id="reviews-track">
+
+                <!-- Card 1 -->
+                <div class="shrink-0 w-[320px] sm:w-[380px] bg-slate-900 border border-white/8 rounded-3xl p-8 flex flex-col gap-6 hover:border-orange-500/30 transition-all duration-300">
+                    <div class="flex gap-1 text-[#f56624] text-xl">★★★★★</div>
+                    <p class="text-slate-300 leading-relaxed text-sm flex-1">"SmpBeton — основной поставщик для наших ЖК. Контроль качества безупречен, ни одного срыва за 2 года сотрудничества."</p>
+                    <div class="flex items-center gap-4 pt-4 border-t border-white/8">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Андрей Волков" class="size-12 rounded-full object-cover ring-2 ring-[#f56624]/30"/>
+                        <div>
+                            <p class="font-bold text-white text-sm">Андрей Волков</p>
+                            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Прораб, РОСС-СТРОЙ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="shrink-0 w-[320px] sm:w-[380px] bg-slate-900 border border-white/8 rounded-3xl p-8 flex flex-col gap-6 hover:border-orange-500/30 transition-all duration-300">
+                    <div class="flex gap-1 text-[#f56624] text-xl">★★★★★</div>
+                    <p class="text-slate-300 leading-relaxed text-sm flex-1">"Профессиональный подход к логистике. Бетон приходит точно по графику, паспорта качества всегда в порядке."</p>
+                    <div class="flex items-center gap-4 pt-4 border-t border-white/8">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face" alt="Елена Соколова" class="size-12 rounded-full object-cover ring-2 ring-[#f56624]/30"/>
+                        <div>
+                            <p class="font-bold text-white text-sm">Елена Соколова</p>
+                            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Директор, МОС-ДОМ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="shrink-0 w-[320px] sm:w-[380px] bg-gradient-to-br from-[#f56624] to-orange-700 rounded-3xl p-8 flex flex-col gap-6">
+                    <div class="flex gap-1 text-white text-xl">★★★★★</div>
+                    <p class="text-white/90 leading-relaxed text-sm flex-1">"Заказывали бетононасос со стрелой 52м. Оператор — профессионал, уложились в смену. Цена честная."</p>
+                    <div class="flex items-center gap-4 pt-4 border-t border-white/20">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Дмитрий Орлов" class="size-12 rounded-full object-cover ring-2 ring-white/40"/>
+                        <div>
+                            <p class="font-bold text-white text-sm">Дмитрий Орлов</p>
+                            <p class="text-xs text-white/60 font-bold uppercase tracking-wider">Застройщик, КАПИТАЛ-Г</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="shrink-0 w-[320px] sm:w-[380px] bg-slate-900 border border-white/8 rounded-3xl p-8 flex flex-col gap-6 hover:border-orange-500/30 transition-all duration-300">
+                    <div class="flex gap-1 text-[#f56624] text-xl">★★★★★</div>
+                    <p class="text-slate-300 leading-relaxed text-sm flex-1">"Работаем с SmpBeton уже 3 года. Марка бетона всегда соответствует заявленной. Лаборатория — отдельный плюс."</p>
+                    <div class="flex items-center gap-4 pt-4 border-t border-white/8">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face" alt="Сергей Петров" class="size-12 rounded-full object-cover ring-2 ring-[#f56624]/30"/>
+                        <div>
+                            <p class="font-bold text-white text-sm">Сергей Петров</p>
+                            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Инженер, РЕГИОН-КОНСТ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="shrink-0 w-[320px] sm:w-[380px] bg-slate-900 border border-white/8 rounded-3xl p-8 flex flex-col gap-6 hover:border-orange-500/30 transition-all duration-300">
+                    <div class="flex gap-1 text-[#f56624] text-xl">★★★★☆</div>
+                    <p class="text-slate-300 leading-relaxed text-sm flex-1">"Оперативная доставка, вежливые водители. Брали М400 для монолитного перекрытия — всё прошло отлично."</p>
+                    <div class="flex items-center gap-4 pt-4 border-t border-white/8">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face" alt="Ольга Кузнецова" class="size-12 rounded-full object-cover ring-2 ring-[#f56624]/30"/>
+                        <div>
+                            <p class="font-bold text-white text-sm">Ольга Кузнецова</p>
+                            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Прораб, частный объект</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="shrink-0 w-[320px] sm:w-[380px] bg-slate-900 border border-white/8 rounded-3xl p-8 flex flex-col gap-6 hover:border-orange-500/30 transition-all duration-300">
+                    <div class="flex gap-1 text-[#f56624] text-xl">★★★★★</div>
+                    <p class="text-slate-300 leading-relaxed text-sm flex-1">"Взяли ФБС блоки и бетон М300 для фундамента. Всё привезли в срок, менеджер помог с расчётом объёма."</p>
+                    <div class="flex items-center gap-4 pt-4 border-t border-white/8">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face" alt="Михаил Захаров" class="size-12 rounded-full object-cover ring-2 ring-[#f56624]/30"/>
+                        <div>
+                            <p class="font-bold text-white text-sm">Михаил Захаров</p>
+                            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Частный застройщик</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex items-center justify-between mt-10">
+            <div class="flex gap-2" id="reviews-dots"></div>
+            <div class="flex gap-3">
+                <button id="rev-prev" onclick="reviewsSlide(-1)" class="size-12 rounded-full border border-white/15 flex items-center justify-center text-white hover:bg-white/10 hover:border-white/30 transition-all">
+                    <span class="material-symbols-outlined text-xl">arrow_back</span>
+                </button>
+                <button id="rev-next" onclick="reviewsSlide(1)" class="size-12 rounded-full bg-[#f56624] flex items-center justify-center text-white hover:bg-orange-600 transition-all shadow-lg">
+                    <span class="material-symbols-outlined text-xl">arrow_forward</span>
+                </button>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+(function(){
+    const track = document.getElementById('reviews-track');
+    const viewport = document.getElementById('reviews-viewport');
+    const dotsEl = document.getElementById('reviews-dots');
+    if (!track) return;
+
+    const cards = track.children;
+    let current = 0;
+    let autoTimer;
+
+    function cardWidth() {
+        return cards[0].offsetWidth + 24; // gap-6 = 24px
+    }
+
+    function visibleCount() {
+        return window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+    }
+
+    function totalSlides() {
+        return Math.max(0, cards.length - visibleCount());
+    }
+
+    function buildDots() {
+        dotsEl.innerHTML = '';
+        for (let i = 0; i <= totalSlides(); i++) {
+            const d = document.createElement('button');
+            d.className = 'w-2 h-2 rounded-full transition-all duration-300 ' + (i === current ? 'bg-[#f56624] w-6' : 'bg-white/20');
+            d.onclick = () => goTo(i);
+            dotsEl.appendChild(d);
+        }
+    }
+
+    function goTo(idx) {
+        current = Math.max(0, Math.min(idx, totalSlides()));
+        track.style.transform = 'translateX(-' + (current * cardWidth()) + 'px)';
+        buildDots();
+    }
+
+    window.reviewsSlide = function(dir) {
+        goTo(current + dir);
+        resetAuto();
+    };
+
+    function resetAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => goTo(current >= totalSlides() ? 0 : current + 1), 4000);
+    }
+
+    buildDots();
+    resetAuto();
+    window.addEventListener('resize', () => { goTo(0); });
+})();
+</script>
 
 <!-- Footer -->
 <footer class="bg-white border-t border-slate-200 pt-24 pb-12">
